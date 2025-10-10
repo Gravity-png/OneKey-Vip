@@ -120,6 +120,7 @@
 // @require       https://lib.baomitu.com/viewerjs/1.11.3/viewer.min.js
 // @require       https://lib.baomitu.com/react/18.2.0/umd/react.production.min.js
 // @require       https://lib.baomitu.com/react-dom/18.2.0/umd/react-dom.production.min.js
+// @require       https://registry.npmmirror.com/@douyinfe/semi-ui/2.51.0/files/dist/umd/semi-ui.min.js
 // @grant         GM_setClipboard
 // @grant         unsafeWindow
 // @grant         GM_xmlhttpRequest
