@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name           【玩的嗨】淘宝、天猫、京东、唯品会隐藏优惠券查询，自动显示历史价格和比价,拒绝虚假价格，让您购买到最优惠的商品,网购省钱小助手 长期更新，放心使用
 // @namespace      https://www.wandhi.com/
-// @version        2.6
+// @version        2.7
 // @homepage       https://wiki.wandhi.com
 // @support        https:://wiki.wandhi.com
 // @description    拒绝虚假价格，让您购买到最优惠的商品,网购省钱小助手
@@ -3315,21 +3315,22 @@
             });
         }
         initSearchItem(selector) {
-            var _a, _b, _c, _d, _e, _f, _g, _h;
+            var _a, _b, _c, _d, _e, _f, _g, _h, _j, _k, _l;
             return __awaiter(this, void 0, void 0, (function*() {
                 let $dom = $(selector);
                 if ($dom.hasClass("onekeyvip-box-done")) return;
                 let itemId = null !== (_c = null !== (_b = null !== (_a = $dom.attr("data-id")) && void 0 !== _a ? _a : $dom.data("sku")) && void 0 !== _b ? _b : $dom.attr("id")) && void 0 !== _c ? _c : "";
                 if (Tao.isVailidItemId(itemId) || (itemId = null !== (_f = null !== (_e = null !== (_d = $dom.attr("data-itemid")) && void 0 !== _d ? _d : $dom.data("spu")) && void 0 !== _e ? _e : $dom.attr("id")) && void 0 !== _f ? _f : ""), 
-                !Tao.isVailidItemId(itemId)) if ($dom.attr("href")) itemId = location.protocol + $dom.attr("href"), 
+                !Tao.isVailidItemId(itemId)) if ($dom.attr("href")) itemId = Core.getPar("id", null !== (_g = $dom.attr("href")) && void 0 !== _g ? _g : ""), 
+                itemId || ((null === (_j = null === (_h = $dom.attr("href")) || void 0 === _h ? void 0 : _h.indexOf("http")) || void 0 === _j || _j) && (itemId = location.protocol + $dom.attr("href")), 
                 this.site != SiteEnum.TaoBao && this.site != SiteEnum.TMall || (itemId.indexOf("click.simba.taobao.com") > -1 && (itemId = yield Http.get302(itemId)), 
-                itemId = Core.getPar("id", itemId)); else {
+                itemId = Core.getPar("id", itemId))); else {
                     const $a = $dom.find("a");
                     if (!$a.length) return;
-                    itemId = null !== (_g = $a.attr("data-nid")) && void 0 !== _g ? _g : "", Tao.isVailidItemId(itemId) || (itemId = $a.hasClass("j_ReceiveCoupon") && $a.length > 1 ? location.protocol + $($a[1]).attr("href") : location.protocol + $a.attr("href"));
+                    itemId = null !== (_k = $a.attr("data-nid")) && void 0 !== _k ? _k : "", Tao.isVailidItemId(itemId) || (itemId = $a.hasClass("j_ReceiveCoupon") && $a.length > 1 ? location.protocol + $($a[1]).attr("href") : location.protocol + $a.attr("href"));
                 }
                 if (!Tao.isVailidItemId(itemId) && itemId.indexOf("http") > -1) {
-                    let res = null !== (_h = /item.jd.com\/(.*?).html/i.exec(itemId)) && void 0 !== _h ? _h : [];
+                    let res = null !== (_l = /item.jd.com\/(.*?).html/i.exec(itemId)) && void 0 !== _l ? _l : [];
                     itemId = res.length > 0 ? res[1] : "";
                 }
                 Tao.isValidTaoId(itemId) || ListService.that.itemType != ItemType.Suning || (itemId = $dom.attr("id"), 

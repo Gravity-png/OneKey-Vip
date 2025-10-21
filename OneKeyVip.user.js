@@ -3,7 +3,7 @@
 // @namespace     https://www.wandhi.com/
 // @description   🔥功能介绍🔥：🎉 1、一站式音乐搜索解决方案；🎉 2、bilibili视频封面获取；🎉 3、bilibili视频下载(已支持分P下载)；🎉 4、夸克网盘直链批量获取；🎉 5、商品历史价格展示(一次性告别虚假降价)；🎉 6、优惠券查询；🎉 7、CSDN页面、剪切板清理；🎉 8、页面自动展开(更多网站匹配中,欢迎提交想要支持的网站) 🎉 9、YouTube视频下载🎉 10、中间页自动跳转；🎉 11、搜索引擎快速跳转
 // @license       MIT
-// @version       4.9.56
+// @version       4.9.57
 // @author        MaxZhang
 // @include       *://item.taobao.com/*
 // @include       *://s.taobao.com/search*
@@ -3971,33 +3971,33 @@
                 }));
             }));
         }, ListService.prototype.initSearchItem = function(selector) {
-            var _a, _b, _c, _d, _e, _f, _g, _h;
+            var _a, _b, _c, _d, _e, _f, _g, _h, _j, _k, _l;
             return __awaiter(this, void 0, Promise, (function() {
                 var $dom, itemId, $a, res;
-                return __generator(this, (function(_j) {
-                    switch (_j.label) {
+                return __generator(this, (function(_m) {
+                    switch (_m.label) {
                       case 0:
                         return ($dom = $(selector)).hasClass("onekeyvip-box-done") ? [ 2 ] : (itemId = null !== (_c = null !== (_b = null !== (_a = $dom.attr("data-id")) && void 0 !== _a ? _a : $dom.data("sku")) && void 0 !== _b ? _b : $dom.attr("id")) && void 0 !== _c ? _c : "", 
                         Tao.isVailidItemId(itemId) || (itemId = null !== (_f = null !== (_e = null !== (_d = $dom.attr("data-itemid")) && void 0 !== _d ? _d : $dom.data("spu")) && void 0 !== _e ? _e : $dom.attr("id")) && void 0 !== _f ? _f : ""), 
-                        Tao.isVailidItemId(itemId) ? [ 3, 5 ] : $dom.attr("href") ? (itemId = location.protocol + $dom.attr("href"), 
+                        Tao.isVailidItemId(itemId) ? [ 3, 5 ] : $dom.attr("href") ? (itemId = Core.getPar("id", null !== (_g = $dom.attr("href")) && void 0 !== _g ? _g : "")) ? [ 3, 3 ] : ((null === (_j = null === (_h = $dom.attr("href")) || void 0 === _h ? void 0 : _h.indexOf("http")) || void 0 === _j || _j) && (itemId = location.protocol + $dom.attr("href")), 
                         this.site != SiteEnum.TaoBao && this.site != SiteEnum.TMall ? [ 3, 3 ] : itemId.indexOf("click.simba.taobao.com") > -1 ? [ 4, Http.get302(itemId) ] : [ 3, 2 ]) : [ 3, 4 ]);
 
                       case 1:
-                        itemId = _j.sent(), _j.label = 2;
+                        itemId = _m.sent(), _m.label = 2;
 
                       case 2:
-                        itemId = Core.getPar("id", itemId), _j.label = 3;
+                        itemId = Core.getPar("id", itemId), _m.label = 3;
 
                       case 3:
                         return [ 3, 5 ];
 
                       case 4:
                         if (!($a = $dom.find("a")).length) return [ 2 ];
-                        itemId = null !== (_g = $a.attr("data-nid")) && void 0 !== _g ? _g : "", Tao.isVailidItemId(itemId) || (itemId = $a.hasClass("j_ReceiveCoupon") && $a.length > 1 ? location.protocol + $($a[1]).attr("href") : location.protocol + $a.attr("href")), 
-                        _j.label = 5;
+                        itemId = null !== (_k = $a.attr("data-nid")) && void 0 !== _k ? _k : "", Tao.isVailidItemId(itemId) || (itemId = $a.hasClass("j_ReceiveCoupon") && $a.length > 1 ? location.protocol + $($a[1]).attr("href") : location.protocol + $a.attr("href")), 
+                        _m.label = 5;
 
                       case 5:
-                        return !Tao.isVailidItemId(itemId) && itemId.indexOf("http") > -1 && (res = null !== (_h = /item.jd.com\/(.*?).html/i.exec(itemId)) && void 0 !== _h ? _h : [], 
+                        return !Tao.isVailidItemId(itemId) && itemId.indexOf("http") > -1 && (res = null !== (_l = /item.jd.com\/(.*?).html/i.exec(itemId)) && void 0 !== _l ? _l : [], 
                         itemId = res.length > 0 ? res[1] : ""), Tao.isValidTaoId(itemId) || ListService.that.itemType != ItemType.Suning || (itemId = $dom.attr("id")).split("-").length > 1 && (itemId = itemId.split("-")[1] + "-" + itemId.split("-")[0]), 
                         Tao.isValidTaoId(itemId) && (this.initBoxHtml($dom, itemId), this.initTagClass($dom, itemId), 
                         $dom.addClass("onekeyvip-box-done")), [ 2 ];
